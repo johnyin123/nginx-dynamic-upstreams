@@ -147,7 +147,7 @@ Nginx dynamic upstream(http &amp; stream) use http json<br>
 		]
 	}
 ## return Result(add/modify/del)
-###success(code == 0)
+### success(code == 0)
 	{
 		"code": 0,
 		"message": {
@@ -155,7 +155,7 @@ Nginx dynamic upstream(http &amp; stream) use http json<br>
 			"failed": 4
 		}
 	}
-##failed(code != 0)
+### failed(code != 0)
 	{
 		"code": -1009,
 		"message": "No upstream found"
