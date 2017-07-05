@@ -1,35 +1,33 @@
-# nginx-dynamic-upstreams
-Nginx dynamic upstream(http &amp; stream) use http json
-=
-add(server,backup,down,weight,max_conns,max_fails,fail_timeout)
+# nginx-dynamic-upstreams<br>
+
+# Description
+Nginx dynamic upstream(http &amp; stream) use http json<br>
+
+# add(server,backup,down,weight,max_conns,max_fails,fail_timeout)
 	server : must set
 	backup noset : false
-	down noset : false 
+	down noset : false
 	weight>0 else : 1
 	max_conns>0 else : 0
 	max_fails>0 else : 1
 	fail_timeout>0 else : 10
----------------------------------------
-del(name,server,backup,down)
-=
+# del(name,server,backup,down)
 	name/server must set at least one
 	backup noset : false
 	down noset : false
-edit(name,server,backup)
-=
+# edit(name,server,backup)
 	name/server must set at least one
 	backup noset : false
 	others can modify, noset no modify
 
 
-Example:
-List:
-=
+# Example:
+
+## List:
 {
-	"method": "lst"
+	"method": "lst"\<br>
 }
-Add:
-=
+## Add:
 {
 	"method": "add",
 	"params": [
@@ -45,8 +43,7 @@ Add:
 		}
 	]
 }
-Del:
-=
+## Del:
 {
 	"method": "del",
 	"params": [
@@ -62,8 +59,7 @@ Del:
 		}
 	]
 }
-Modify:
-=
+##Modify:
 {
 	"method": "edit",
 	"params": [
@@ -79,3 +75,5 @@ Modify:
 		}
 	]
 }
+
+[我的博客](http://blog.chinaunix.net/uid/16979052.html)  
