@@ -1,6 +1,6 @@
 # nginx-dynamic-upstreams
 Nginx dynamic upstream(http &amp; stream) use http json
-
+=
 add(server,backup,down,weight,max_conns,max_fails,fail_timeout)
 	server : must set
 	backup noset : false
@@ -11,10 +11,12 @@ add(server,backup,down,weight,max_conns,max_fails,fail_timeout)
 	fail_timeout>0 else : 10
 ---------------------------------------
 del(name,server,backup,down)
+=
 	name/server must set at least one
 	backup noset : false
 	down noset : false
 edit(name,server,backup)
+=
 	name/server must set at least one
 	backup noset : false
 	others can modify, noset no modify
@@ -22,10 +24,12 @@ edit(name,server,backup)
 
 Example:
 List:
+=
 {
 	"method": "lst"
 }
 Add:
+=
 {
 	"method": "add",
 	"params": [
@@ -42,6 +46,7 @@ Add:
 	]
 }
 Del:
+=
 {
 	"method": "del",
 	"params": [
@@ -58,6 +63,7 @@ Del:
 	]
 }
 Modify:
+=
 {
 	"method": "edit",
 	"params": [
