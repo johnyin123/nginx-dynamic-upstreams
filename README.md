@@ -76,5 +76,92 @@ Nginx dynamic upstream(http &amp; stream) use http json<br>
 			}
 		]
 	}
+## return Result(list)
+	{
+		"code": 0,
+		"message": [
+			{
+				"upsname": "http_upsname",
+				"number": 2,
+				"total_weight": 2,
+				"type": "http",
+				"peers": [
+					{
+						"name": "127.0.0.1:10001",
+						"server": "localhost:10001",
+						"current_weight": 0,
+						"effective_weight": 1,
+						"weight": 1,
+						"conns": 0,
+						"max_conns": 0,
+						"fails": 0,
+						"max_fails": 1,
+						"fail_timeout": 10,
+						"slow_start": 0,
+						"start_time": 0,
+						"down": false,
+						"backup": false
+					},
+					{
+						"name": "[::1]:10001",
+						"server": "localhost:10001",
+						"current_weight": 0,
+						"effective_weight": 1,
+						"weight": 1,
+						"conns": 0,
+						"max_conns": 0,
+						"fails": 0,
+						"max_fails": 1,
+						"fail_timeout": 10,
+						"slow_start": 0,
+						"start_time": 0,
+						"down": false,
+						"backup": false
+					}
+				]
+			},
+			{
+				"upsname": "stream_upsname",
+				"number": 1,
+				"total_weight": 1,
+				"type": "stream",
+				"peers": [
+					{
+						"name": "127.0.0.1:10002",
+						"server": "127.0.0.1:10002",
+						"current_weight": 0,
+						"effective_weight": 1,
+						"weight": 1,
+						"conns": 0,
+						"max_conns": 0,
+						"fails": 0,
+						"max_fails": 1,
+						"fail_timeout": 10,
+						"slow_start": 0,
+						"start_time": 0,
+						"down": false,
+						"backup": false
+					}
+				]
+			}
+		]
+	}
+## return Result(add/modify/del)
+###success(code == 0)
+	{
+		"code": 0,
+		"message": {
+			"success": 0,
+			"failed": 4
+		}
+	}
+##failed(code != 0)
+	{
+		"code": -1009,
+		"message": "No upstream found"
+	}
 
 [我的博客](http://blog.chinaunix.net/uid/16979052.html)  
+
+
+
