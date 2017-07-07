@@ -1,0 +1,55 @@
+<html> 
+	<head> 
+		<title> 
+		</title> 
+		<script src="js/jquery-1.10.2.min.js" type="text/javascript"></script> 
+		<script type="text/javascript" language="javascript"> 
+var row_count = 0; 
+function addhdr() 
+{ 
+	var table1 = $('#table1'); 
+	var row = $("<tr></tr>"); 
+	var th = $("<th></th>"); 
+	th.append("#");
+	row.append(th); 
+	th = $("<th></th>"); 
+	th.append("hdr");
+	row.append(th); 
+	table1.append(row); 
+}
+function addNew() 
+{ 
+	var table1 = $('#table1'); 
+	var firstTr = table1.find('tbody>tr:first'); 
+	var row = $("<tr></tr>"); 
+	var td = $("<td></td>"); 
+	td.append($("<input type='checkbox' name='count' value='New'><b>CheckBox"+row_count+"</b>"));
+	row.append(td); 
+	td = $("<td></td>"); 
+	td.append("xxxxxxx");
+	row.append(td); 
+	table1.append(row); 
+	row_count++; 
+} 
+function del() 
+{ 
+	var checked = $("input[type='checkbox'][name='count']"); 
+	$(checked).each(function(){ 
+		if($(this).prop("checked"))
+		{ 
+			$(this).parent().parent().remove(); 
+		} 
+	}); 
+} 
+		</script> 
+	</head> 
+	<body> 
+		<input type="button" value="Addhdr" onclick="addhdr();"> 
+		<input type="button" value="Add" onclick="addNew();"> 
+		<input type="button" value="Delete" onclick="del();"> 
+		<div id="rightcontent"> 
+			<table id="table1" cellspacing="3" cellpadding="3" border="1"> 
+			</table> 
+		</div> 
+	</body> 
+</html>

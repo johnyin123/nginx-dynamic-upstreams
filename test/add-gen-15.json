@@ -1,0 +1,15 @@
+{
+	"method": "add",
+	"params": [
+		{ "stream":{ "upsname" : "stream_upsname", "peers":[
+			{ "server":"localhost:10002", "weight":-100, "max_conns":-1, "max_fails":0, "fail_timeout":2, "backup": true, "down": true},
+			{ "server":"yinzh:10003", "weight":0, "max_conns":3, "max_fails":2222222, "fail_timeout":abc, "backup": 1000, "down": false}
+		]}
+		},
+		{ "other":{ "upsname" : "other_upsname", "peers":[
+			{ "server":"localhost:10002", "weight":2, "max_conns":3, "max_fails":-1000, "fail_timeout":22, "backup": false, "down": false},
+			{ "server":"127.0.0.1:10003", "weight":0, "max_conns":3, "max_fails":2222222, "fail_timeout":-1, "backup": true, "down": true}
+		]}
+		}
+	]
+}

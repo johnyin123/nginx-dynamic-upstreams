@@ -1,0 +1,15 @@
+{
+	"method": "add",
+	"params": [
+		{ "http":{ "upsname" : "http_upsname", "peers":[
+			{ "server":"localhost:10002", "weight":22, "max_conns":3, "max_fails":2, "fail_timeout":2222, "backup": 1000, "down": true},
+			{ "server":"127.0.0.1:10003", "weight":22, "max_conns":0, "max_fails":-1000, "fail_timeout":22, "backup": false, "down": false}
+		]}
+		},
+		{ "other":{ "upsname" : "other_upsname", "peers":[
+			{ "server":"localhost:10002", "weight":0, "max_conns":-1, "max_fails":2222222, "fail_timeout":22, "backup": true, "down": true},
+			{ "server":"127.0.0.1:10003", "weight":22, "max_conns":33, "max_fails":-65539, "fail_timeout":25538, "backup": 1000, "down": false}
+		]}
+		}
+	]
+}

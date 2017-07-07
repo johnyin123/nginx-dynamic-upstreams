@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+		<meta name='viewport' content='width=device-width, initial-scale=1'>
+		<meta http-equiv='content-type' content='text/html; charset=UTF-8'>
+		<title>Nginx Upstreams</title>
+<script src="./js/jquery-1.10.2.min.js"></script>
+<script src='./js/bootstrap.min.js'></script>
+<link type='text/css' href='./css/bootstrap.min.css' rel='stylesheet'>
+	</head>
+	<body>
+		<div style='padding:20px;'>
+			<h1>Nginx Upstreams(2)</h1>
+			<label>Uptime: 5 days</label>
+			<form class='form-inline' action='' v='0'>
+				<fieldset>
+					<legend><h2>team-backend</h2></legend>
+					<div class='checkbox-inline'>
+						<label><input type='checkbox' class='uc_iphash' value='1' />ip_hash</label>
+					</div>
+					<div class='form-group' style='margin-left:20px;'>
+						<label for='team-backend_keepalive'>keepalive:</label>
+						<select id='team-backend_keepalive' name='team-backend_keepalive'>
+							<option value='0' >0</option>
+							<option value='5' selected='selected'  >5</option>
+						</select>
+					</div>
+					<div class='form-group' style='margin-left:20px;'><label><input name='team-backend_submit]' type='button' value='update' class='update_btn'></input></label></div><br>
+					<table  style='margin-top:10px;' class='table table-striped table-bordered'>
+						<tr>
+							<th>Server</th>
+							<th align='center' style='text-align:center'>Weight</th>
+							<th align='center' style='text-align:center'>Backup</th>
+							<th align='center' style='text-align:center'>max_fails</th>
+							<th align='center' style='text-align:center'>fail_timeout</th>
+							<th align='center' style='text-align:center'>Status</th>
+							<th align='right' style='text-align:right'>Requests</th>
+							<th>Operations</th>
+						</tr>
+						<tr class='uc_server_row' v='0'>
+							<td>
+								<span class='uc_server'>192.168.1.99:8082</span>
+							</td>
+							<td align='center'>
+								<span class='uc_weight'>1</span>
+							</td>
+							<td align='center'>
+								<span class='uc_backup' v='0'>No</span>
+							</td>
+							<td align='center'>
+								<span class='uc_max_fails'>10</span>
+							</td>
+							<td align='center'>
+								<span class='uc_fail_timeout'>30</span>
+							</td>
+							<td align='center'>
+								<span class='uc_down' v='0'>Normal</span>
+							</td>
+							<td align='right'>
+								12343</td>
+							<td><a data-toggle='modal' data-target='#editdlg' style='cursor:pointer;'>edit</a> <a style='cursor:pointer;' class='enable_btn'>disable</a></td>
+						</tr>
+						<tr class='uc_server_row' v='1'>
+							<td>
+								<span class='uc_server'>192.168.1.99</span>
+							</td>
+							<td align='center'>
+								<span class='uc_weight'>2</span>
+							</td>
+							<td align='center'>
+								<span class='uc_backup' v='0'>No</span>
+							</td>
+							<td align='center'>
+								<span class='uc_max_fails'>10</span>
+							</td>
+							<td align='center'>
+								<span class='uc_fail_timeout'>30</span>
+							</td>
+							<td align='center'>
+								<span class='uc_down' v='0'>Normal</span>
+							</td>
+							<td align='right'>
+								456</td>
+							<td><a data-toggle='modal' data-target='#editdlg' style='cursor:pointer;'>edit</a> <a style='cursor:pointer;' class='enable_btn'>disable</a></td>
+						</tr>
+						<tr class='uc_server_row' v='2'>
+							<td>
+								<span class='uc_server'>192.168.1.99:8080</span>
+							</td>
+							<td align='center'>
+								<span class='uc_weight'>2</span>
+							</td>
+							<td align='center'>
+								<span class='uc_backup' v='1'>Yes</span>
+							</td>
+							<td align='center'>
+								<span class='uc_max_fails'>10</span>
+							</td>
+							<td align='center'>
+								<span class='uc_fail_timeout'>30</span>
+							</td>
+							<td align='center'>
+								<span class='uc_down' v='0'>Normal</span>
+							</td>
+							<td align='right'>
+								900</td>
+							<td><a data-toggle='modal' data-target='#editdlg' style='cursor:pointer;'>edit</a> <a style='cursor:pointer;' class='enable_btn'>disable</a></td>
+						</tr>
+					</table>
+				</fieldset>
+			</form>
+		</div>
+
+
+
+		<div class='modal fade' id='editdlg' tabindex='-1' role='dialog' aria-labelledby='editdlglabel'>
+			<div class='modal-dialog' role='document'>
+				<div class='modal-content'>
+					<div class='modal-header'>
+						<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</   span></button>
+						<h4 class='modal-title' id='editdlglabel'>Edit</h4>
+					</div>
+					<div class='modal-body'>
+						<form class='form-horizontal'>
+							<div class='form-group'>
+								<label for='m_server' class='col-sm-3 control-label'>Server:</label>
+								<p class='col-sm-9 form-control-static' id='m_server'>192.168.1.105:8525</p>
+							</div>
+							<div class='form-group'>
+								<label for='m_weight' class='col-sm-3 control-label'>Weight:</label>
+								<div class='col-sm-9'><input type='text' class='form-control' id='m_weight' value=''/></div>
+							</div>
+							<div class='form-group'>
+								<label for='m_backup' class='col-sm-3 control-label'>Backup:</label>
+								<div class='col-sm-9'><select class='form-control' id='m_backup'>
+										<option value='1'>Yes</option>
+										<option value='0'>No</option>
+									</select></div>
+							</div>
+							<div class='form-group'>
+								<label for='m_max_fails' class='col-sm-3 control-label'>max_fails:</label>
+								<div class='col-sm-9'><input type='text' class='form-control' id='m_max_fails' value=''/></div>
+							</div>
+							<div class='form-group'>
+								<label for='m_fail_timeout' class='col-sm-3 control-label'>fail_timeout:</label>
+								<div class='col-sm-9'><input type='text' class='form-control' id='m_fail_timeout' value=''/></div>
+							</div>
+						</form>
+					</div>
+					<div class='modal-footer'>
+						<button type='button' class='btn btn-primary' id='edit_btn'>OK</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class='modal fade' id='suredlg' tabindex='-1' role='dialog' aria-labelledby='suredlglabel' m='' b='' s='' i='' k='' d=''>
+			<div class='modal-dialog' role='document'>
+				<div class='modal-content'>
+					<div class='modal-header'>
+						<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</   span></button>
+						<h4 class='modal-title' id='suredlglabel'>Warnning</h4>
+					</div>
+					<div class='modal-body'>
+						<p  class='text-warning'>Your commit will change the server's configuration. Are you sure to do this?</p></div>
+					<div class='modal-footer'>
+						<button type='button' class='btn btn-primary' id='sure_btn'>Yes</button>
+						<button type='button' class='btn btn-default' data-dismiss='modal'>No</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src='./ui.js'></script>
+	</body>
+</html>
+

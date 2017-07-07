@@ -1,0 +1,15 @@
+{
+	"method": "add",
+	"params": [
+		{ "other":{ "upsname" : "other_backend", "peers":[
+			{ "server":"yinzh:10003", "weight":222, "max_conns":333, "max_fails":2222222, "fail_timeout":25538, "backup": 1000, "down": true},
+			{ "server":"yinzh:10003", "weight":-100, "max_conns":0, "max_fails":-1, "fail_timeout":2222, "backup": true, "down": false}
+		]}
+		},
+		{ "other":{ "upsname" : "other_upsname", "peers":[
+			{ "server":"127.0.0.1:10003", "weight":-100, "max_conns":333, "max_fails":-65539, "fail_timeout":-1, "backup": true, "down": true},
+			{ "server":"localhost:10002", "weight":2, "max_conns":3, "max_fails":2, "fail_timeout":0x11, "backup": true, "down": false}
+		]}
+		}
+	]
+}
