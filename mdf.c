@@ -149,7 +149,7 @@ static json_t *mdf_upstream(json_t *parms, void *dummy_parm)
 	ngx_http_request_t *r = dummy_parm;
 	ngx_str_t ngx_upsname, ngx_srvname, ngx_server;
 	const char *upsname, *srvname, *server;
-	ngx_int_t weight, fail_tm;
+	ngx_int_t weight, fail_tm, i, j;
 	ngx_uint_t max_conns, max_fails;
 	bool down, backup;
 	bool ishttp;
@@ -165,7 +165,7 @@ static json_t *mdf_upstream(json_t *parms, void *dummy_parm)
 		return res_json;
 	}
 
-	for(ngx_int_t i=0;i<json_array_size(parms);i++) {
+	for(i=0;i<json_array_size(parms);i++) {
 		if ((tmp_array = json_getobject_item(json_getarray_item(parms, i), JI_HTTP)) != NULL) {
 			ishttp = true;
 		}
@@ -187,7 +187,7 @@ static json_t *mdf_upstream(json_t *parms, void *dummy_parm)
 			ret_failed_cnt ++;
 			continue;
 		}
-		for(ngx_int_t j=0;j<json_array_size(tmp_peers);j++) {
+		for(j=0;j<json_array_size(tmp_peers);j++) {
 			srvname = json_getstring(json_getobject_item(json_getarray_item(tmp_peers, j), JI_SRVNAME));
 			server = json_getstring(json_getobject_item(json_getarray_item(tmp_peers, j), JI_SERVER));
 			if((server == NULL) && (srvname == NULL)) {

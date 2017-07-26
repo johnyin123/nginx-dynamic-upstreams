@@ -191,7 +191,8 @@ static json_t *lst_upstream(json_t *parms, void *dummy_parm)
 	char cstr_tmp[1024];
 	dyn_peers_info_t *dpinfo;
 	dyn_peer_info_t *peer;
-	ngx_int_t ret_cnt;
+	ngx_int_t ret_cnt, i, j;
+	ngx_uint_t pos;
 	ngx_array_t *ups;
 	ngx_str_t upsname;
 	json_t *array, *item, *json_peer, *json_peers;
@@ -223,9 +224,9 @@ static json_t *lst_upstream(json_t *parms, void *dummy_parm)
 			ngx_log_error(NGX_LOG_WARN, r->connection->log, 0, "dyn_upstream: return=[%d:%s]", ret_cnt, ups_errmsg(ret_cnt));
 		}
 	}
-	for(ngx_int_t i=0;i<json_array_size(parms);i++) {
+	for(i=0;i<json_array_size(parms);i++) {
 		array = json_getobject_item(json_getarray_item(parms, i), JI_HTTP);
-		for(ngx_int_t j=0;j<json_array_size(array);j++) {
+		for(j=0;j<json_array_size(array);j++) {
 			str = json_getstring(json_getobject_item(json_getarray_item(array, j), JI_UPSNAME));
 			if (str) {
 				upsname.data = (u_char *)str;
@@ -237,7 +238,7 @@ static json_t *lst_upstream(json_t *parms, void *dummy_parm)
 			}
 		}
 		array = json_getobject_item(json_getarray_item(parms, i), JI_STREAM);
-		for(ngx_int_t j=0;j<json_array_size(array);j++) {
+		for(j=0;j<json_array_size(array);j++) {
 			str = json_getstring(json_getobject_item(json_getarray_item(array, j), JI_UPSNAME));
 			if(str) {
 				upsname.data = (u_char *)str;
@@ -254,7 +255,7 @@ static json_t *lst_upstream(json_t *parms, void *dummy_parm)
 	for (ngx_int_t i = 0; i < (int)ups->nelts; i++) {
 		json_peers = json_createarray();
 		peer = dpinfo[i].peer->elts;
-		for (ngx_uint_t pos=0;pos<dpinfo[i].number;pos++) {
+		for (pos=0;pos<dpinfo[i].number;pos++) {
 			json_peer = json_create();
 			json_addstring(json_peer, JI_SRVNAME, safe_ngx_strcpy(cstr_tmp, sizeof(cstr_tmp), &(peer[pos].name)));
 			json_addstring(json_peer, JI_SERVER,  safe_ngx_strcpy(cstr_tmp, sizeof(cstr_tmp), &(peer[pos].server)));

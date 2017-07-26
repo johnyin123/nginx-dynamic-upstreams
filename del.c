@@ -177,7 +177,7 @@ static json_t *del_upstream(json_t *parms, void *dummy_parm)
 	bool down, backup;
 	bool ishttp;
 	json_t *tmp_peers, *tmp_array;
-	ngx_int_t ret_success_cnt, ret_failed_cnt, ret_cnt;
+	ngx_int_t ret_success_cnt, ret_failed_cnt, ret_cnt, i, j;
 	ret_success_cnt = ret_failed_cnt = ret_cnt = 0;
 	json_t *res_json = json_create();
 	ngx_pool_t *pool = ngx_create_pool(NGX_DEFAULT_POOL_SIZE, r->connection->log);
@@ -188,7 +188,7 @@ static json_t *del_upstream(json_t *parms, void *dummy_parm)
 		return res_json;
 	}
 
-	for(ngx_int_t i=0;i<json_array_size(parms);i++) {
+	for(i=0;i<json_array_size(parms);i++) {
 		if ((tmp_array = json_getobject_item(json_getarray_item(parms, i), JI_HTTP)) != NULL) {
 			ishttp = true;
 		}
@@ -210,7 +210,7 @@ static json_t *del_upstream(json_t *parms, void *dummy_parm)
 			ret_failed_cnt ++;
 			continue;
 		}
-		for(ngx_int_t j=0;j<json_array_size(tmp_peers);j++) {
+		for(j=0;j<json_array_size(tmp_peers);j++) {
 			srvname = json_getstring(json_getobject_item(json_getarray_item(tmp_peers, j), JI_SRVNAME));
 			server = json_getstring(json_getobject_item(json_getarray_item(tmp_peers, j), JI_SERVER));
 			if((server == NULL) && (srvname == NULL)) {
